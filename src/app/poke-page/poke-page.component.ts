@@ -27,6 +27,7 @@ export class PokePageComponent implements OnInit {
             details => {
               this.pokemonDetails.push(details)
           }));
+        this.pokemonDetails = this.pokemonDetails.sort((a, b) => (a.id < b.id) ? -1 : 1)
         console.log(this.pokemonDetails);
       }
     );

@@ -1,7 +1,9 @@
-<p>poke-page works!</p>
-<div *ngFor="let pokemon of pokemonList">
-    {{pokemon.name}} {{pokemon.url}}
-</div>
-<div *ngFor="let details of pokemonDetails">
-    {{details.name}} {{details.weight}}
+<div class="poke-cards-container-container">
+  <div *ngFor="let details of pokemonDetails" class="poke-cards-container">
+    <app-poke-card
+      [pokeName]="details.name"
+      [pokePic]="details.sprites.front_default"
+      [pokeType]="details.types[0].type.name"
+    ></app-poke-card>
+  </div>
 </div>

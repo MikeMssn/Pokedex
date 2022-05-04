@@ -1,0 +1,41 @@
+.example-card {
+  width: 250px;
+  height: 250px;
+  background-color: green;
+  margin: 10px;
+  overflow: hidden;
+}
+
+.poke-pic {
+  width: 75%;
+  position: absolute;
+  max-height: 75%;
+  right: 5px;
+  bottom: -20px;
+}
+
+.ball {
+  width: 60%;
+  filter: invert(100%) opacity(10%);
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+}
+
+.name {
+  text-align: center;
+}
+
+.type {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 800;
+  position: absolute;
+  left: 5%;
+  top: 25%;
+  width: 80px;
+  text-align: center;
+  transition: all 225ms ease-in-out;
+}
