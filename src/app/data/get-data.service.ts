@@ -13,7 +13,7 @@ export class GetDataService {
   constructor(private http: HttpClient) { }
 
   getPokemonList(): Observable<any> {
-    return this.http.get<any>(`${this.url}${this.limit}`);
+    return this.http.get<any>(`${this.url}${this.limit_test}`);
   }
 
   getPokemonDetails(url: string): Observable<any> {
