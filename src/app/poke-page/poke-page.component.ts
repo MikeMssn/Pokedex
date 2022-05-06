@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 import { pokemon, pokemonDetails } from '../data/data_model';
 import { GetDataService } from '../data/get-data.service';
 
@@ -8,28 +9,25 @@ import { GetDataService } from '../data/get-data.service';
   styleUrls: ['./poke-page.component.scss']
 })
 export class PokePageComponent implements OnInit {
-  public pokemonList!: pokemon[];
   public pokemonDetails: pokemonDetails[] = []
 
   constructor(private getDataService: GetDataService) { }
 
   ngOnInit(): void {
-    this.getPokemonDetails();
+//    this.getPokemonDetails();
+    this.getPokemonDs();
   }
 
-  getPokemonDetails(): void {
-    this.getDataService.getPokemonList().subscribe(
-      list => {
-        this.pokemonList = list.results
-        console.log(this.pokemonList)
-        this.pokemonList.forEach(pokemon => 
-          this.getDataService.getPokemonDetails(pokemon.url).subscribe(
-            details => {
-              this.pokemonDetails.push(details)
-          }));
-        this.pokemonDetails = this.pokemonDetails.sort((a, b) => (a.id < b.id) ? -1 : 1)
-        console.log(this.pokemonDetails);
-      }
-    );
+  getPokemonDs(): void {
+    let pokemonObs: Observable<any>[] = []
+    this.getDataService.getPokemonList().pipe(
+      switchMap(result => {
+        result.results.forEach((pokemon: pokemon) => pokemonObs.push(this.getDataService.getPokemonDetails(pokemon.url)))
+        return forkJoin(pokemonObs)
+      })
+    ).subscribe(result => {
+      console.log(result),
+      this.pokemonDetails = result
+    });
   }
 }

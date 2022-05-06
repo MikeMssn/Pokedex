@@ -2,17 +2,17 @@
   <div class="mat-card-cvr">
     <img
       mat-card-image
-      class="poke-pic"
-      src="{{ pokePic }}"
-      alt="Pic of {{ pokeName }}"
-    />
-    <img
-      mat-card-image
       class="ball"
       src="./assets/imgs/bg-pokeball.svg"
       alt="Pic of {{ pokeName }}"
     />
-    <div class="name">{{ pokeName | titlecase}} </div>
+    <img
+      mat-card-image
+      class="poke-pic"
+      src="{{ pokePic }}"
+      alt="Pic of {{ pokeName }}"
+    />
+    <div class="name">{{ pokeName | titlecase }}</div>
     <span class="type">{{ pokeType }}</span>
   </div>
 </mat-card>
