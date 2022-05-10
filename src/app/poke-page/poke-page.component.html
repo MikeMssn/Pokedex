@@ -1,9 +1,7 @@
 <div class="poke-cards-container-container">
   <div *ngFor="let details of pokemonDetails" class="poke-cards-container">
     <app-poke-card
-      [pokeName]="details.name"
-      [pokePic]="details.sprites.other['official-artwork'].front_default"
-      [pokeType]="details.types[0].type.name"
+      [pokeDetails]="details"
     ></app-poke-card>
   </div>
 </div>

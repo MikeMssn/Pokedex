@@ -1,18 +1,20 @@
-<mat-card class="example-card {{ pokeType }}">
+<mat-card class="example-card {{ pokeDetails.types[0].type.name }}" (click)="openDialog()">
   <div class="mat-card-cvr">
     <img
       mat-card-image
       class="ball"
       src="./assets/imgs/bg-pokeball.svg"
-      alt="Pic of {{ pokeName }}"
+      alt="Pic of Pokeball"
     />
     <img
       mat-card-image
       class="poke-pic"
-      src="{{ pokePic }}"
-      alt="Pic of {{ pokeName }}"
+      src="{{ pokeDetails.sprites.other['official-artwork'].front_default }}"
+      alt="Pic of {{ pokeDetails.name }}"
     />
-    <div class="name">{{ pokeName | titlecase }}</div>
-    <span class="type">{{ pokeType }}</span>
+    <div class="name">{{ pokeDetails.name | titlecase }}</div>
+    <div class="type" >
+      <span *ngFor="let type of pokeDetails.types">{{ type.type.name }} </span>
+    </div>
   </div>
 </mat-card>

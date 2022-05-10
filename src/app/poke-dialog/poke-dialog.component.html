@@ -1,0 +1,47 @@
+<div class="{{ data.types[0].type.name }} dialog-container">
+  <div class="">
+    <h1>{{ data.name | titlecase }}</h1>
+  </div>
+  <div class="content-container">
+    <img
+      class="ball border"
+      src="./assets/imgs/bg-pokeball.svg"
+      alt="Pic of Pokeball"
+    />
+    <img
+      class="poke-pic"
+      src="{{ data.sprites.other['official-artwork'].front_default }}"
+      alt="Pic of {{ data.name }}"
+    />
+    <div class="table-settings">
+      About:
+      <table class="table-settings">
+        <tr>
+          <td>Type:</td>
+          <td><div *ngFor="let type of data.types">{{ type.type.name }}</div></td>
+        </tr>
+        <tr>
+          <td>Height:</td>
+          <td>{{ data.height / 10 }}m</td>
+        </tr>
+        <tr>
+          <td>Weight:</td>
+          <td>{{ data.weight /10 }}kg</td>
+        </tr>
+        <tr>
+          <td>Abilities:</td>
+          <td><div *ngFor="let abi of data.abilities">{{ abi.ability.name }}</div></td>
+        </tr>
+      </table>
+    </div>
+    <div  class="table-settings">
+      Stats:
+      <table class="table-settings">
+        <tr *ngFor="let stat of data.stats">
+          <td>{{stat.stat.name | titlecase}}:</td>
+          <td>{{ stat.base_stat }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

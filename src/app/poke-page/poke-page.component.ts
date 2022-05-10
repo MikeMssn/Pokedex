@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { forkJoin, Observable, switchMap, tap } from 'rxjs';
 import { pokemon, pokemonDetails } from '../data/data_model';
 import { GetDataService } from '../data/get-data.service';
@@ -9,12 +9,12 @@ import { GetDataService } from '../data/get-data.service';
   styleUrls: ['./poke-page.component.scss']
 })
 export class PokePageComponent implements OnInit {
+  public pokemonDetailsBackup: pokemonDetails[] = []
   public pokemonDetails: pokemonDetails[] = []
 
   constructor(private getDataService: GetDataService) { }
 
   ngOnInit(): void {
-//    this.getPokemonDetails();
     this.getPokemonDs();
   }
 
@@ -27,7 +27,23 @@ export class PokePageComponent implements OnInit {
       })
     ).subscribe(result => {
       console.log(result),
-      this.pokemonDetails = result
+        this.pokemonDetails = result,
+        this.pokemonDetailsBackup = result
     });
+  }
+
+  setFilter(filterValue: any): void {
+    this.pokemonDetails = this.pokemonDetailsBackup
+    console.log(filterValue)
+    if (filterValue) {
+      this.pokemonDetails = this.pokemonDetails.filter(function (ele, i, array) {
+        let arrayelement = ele.name.toLowerCase()
+        return arrayelement.includes(filterValue)
+      })
+    }
+    else {
+      console.log(this.pokemonDetails)
+    }
+    console.log(this.pokemonDetails)
   }
 }
